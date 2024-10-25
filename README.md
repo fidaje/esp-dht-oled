@@ -1,42 +1,42 @@
 
-# Monitoraggio Temperatura e Umidità con Arduino e Bot Telegram
+# Temperature and Humidity Monitoring with Arduino and Telegram Bot
 
-Questo progetto utilizza un sensore **DHT11** per monitorare la temperatura e l'umidità, visualizzando i dati in tempo reale su un display **OLED** e consentendo l'accesso remoto alle letture tramite un bot di **Telegram**.
+This project uses a **DHT11** sensor to monitor temperature and humidity, displaying real-time data on an **OLED** display and allowing remote access to the readings via a **Telegram** bot.
 
-## Caratteristiche
+## Features
 
-- Misurazione della temperatura e dell'umidità con sensore DHT11.
-- Visualizzazione dei dati sul display OLED SSD1306.
-- Integrazione con un bot di Telegram per ottenere letture a distanza.
-- Gestione della connessione Wi-Fi per un facile accesso a internet.
-- Supporto per comando Telegram `/state` per visualizzare la temperatura e l'umidità attuali e `/start` per istruzioni.
+- Measurement of temperature and humidity with DHT11 sensor.
+- Displaying data on the OLED SSD1306 display.
+- Integration with a Telegram bot for remote readings.
+- Wi-Fi connection management for easy internet access.
+- Support for Telegram command `/state` to view current temperature and humidity, and `/start` for instructions.
 
-## Componenti Necessari
+## Required Components
 
-- **Arduino con supporto WiFi** (es. ESP32)
-- **DHT11** (sensore di temperatura e umidità)
-- **Display OLED SSD1306**
-- **Connessione WiFi**
-- **Account Telegram** e un bot creato tramite BotFather per ricevere notifiche (includi il token del bot nel codice).
+- **Arduino with WiFi support** (e.g., ESP32)
+- **DHT11** (temperature and humidity sensor)
+- **SSD1306 OLED display**
+- **WiFi Connection**
+- **Telegram Account** and a bot created via BotFather to receive notifications (include the bot token in the code).
 
-## Connessioni Hardware
+## Hardware Connections
 
-1. Collega il sensore **DHT11** al pin **DHTPIN** definito nel codice (ad esempio, pin `2`).
-2. Collega il display **SSD1306** all'ESP32 utilizzando i pin **SDA** e **SCL** per l'I2C.
+1. Connect the **DHT11** sensor to the **DHTPIN** defined in the code (e.g., pin `2`).
+2. Connect the **SSD1306** display to the ESP32 using the **SDA** and **SCL** pins for I2C.
 
-## Installazione delle Librerie
+## Library Installation
 
-Per eseguire questo progetto, assicurati di avere installate le seguenti librerie in **Arduino IDE**:
+To run this project, make sure to have the following libraries installed in **Arduino IDE**:
 
-- `WiFi.h` e `WiFiClientSecure.h` (inclusi nella libreria di base ESP32).
-- `UniversalTelegramBot.h` per la gestione delle richieste del bot Telegram.
-- `ArduinoJson.h` per il parsing JSON.
-- `Adafruit_Sensor.h`, `DHT.h` per il sensore DHT11.
-- `Adafruit_GFX.h` e `Adafruit_SSD1306.h` per il display OLED.
+- `WiFi.h` and `WiFiClientSecure.h` (included in the base ESP32 library).
+- `UniversalTelegramBot.h` for handling Telegram bot requests.
+- `ArduinoJson.h` for JSON parsing.
+- `Adafruit_Sensor.h`, `DHT.h` for the DHT11 sensor.
+- `Adafruit_GFX.h` and `Adafruit_SSD1306.h` for the OLED display.
 
-## Configurazione del Codice
+## Code Configuration
 
-Prima di caricare il codice, configura le seguenti variabili nel file `.ino`:
+Before uploading the code, configure the following variables in the `.ino` file:
 
 - **WiFi**:
   ```cpp
@@ -44,29 +44,27 @@ Prima di caricare il codice, configura le seguenti variabili nel file `.ino`:
   #define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
   ```
 
-- **Bot Telegram**:
+- **Telegram Bot**:
   ```cpp
   #define BOT_TOKEN "YOUR_BOT_TOKEN"
   ```
 
-## Utilizzo
+## Usage
 
-1. **Connessione WiFi**: Dopo aver avviato il dispositivo, l'ESP32 tenterà di connettersi alla rete WiFi configurata.
-2. **Visualizzazione su OLED**: I dati della temperatura e dell'umidità saranno mostrati sul display OLED in tempo reale.
-3. **Bot Telegram**: Usa i seguenti comandi per interagire con il bot:
-   - `/start`: Riceverai un messaggio di benvenuto e una guida all'uso.
-   - `/state`: Riceverai la temperatura e l'umidità attuali.
+1. **WiFi Connection**: After the device starts, the ESP32 will attempt to connect to the configured WiFi network.
+2. **OLED Display**: Temperature and humidity data will be shown in real-time on the OLED display.
+3. **Telegram Bot**: Use the following commands to interact with the bot:
+   - `/start`: You will receive a welcome message and usage guide.
+   - `/state`: You will receive the current temperature and humidity.
 
-## Schermate
+## Screens
 
-Il display OLED visualizza:
-- Un’icona di stato per indicare in tentativo di connessione.
-- **Temperatura** e **Umidità** in grandi caratteri per una lettura immediata.
+The OLED display shows:
+- A status icon to indicate connection attempts.
+- **Temperature** and **Humidity** in large characters for easy reading.
 
+## Main Code Functions
 
-## Funzioni Principali del Codice
-
-- **Connessione WiFi**: gestita in fase di `setup()`, la connessione viene monitorata con messaggi sul serial monitor.
-- **Lettura DHT11**: il sensore misura temperatura e umidità; i valori letti vengono inviati sia al display OLED sia al bot Telegram.
-- **Aggiornamento Telegram**: la funzione `handleNewMessages()` verifica ogni secondo la presenza di nuovi messaggi e gestisce i comandi `/start` e `/state`.
-
+- **WiFi Connection**: Managed in the `setup()` phase; the connection is monitored with messages on the serial monitor.
+- **DHT11 Reading**: The sensor measures temperature and humidity; the readings are sent both to the OLED display and to the Telegram bot.
+- **Telegram Update**: The `handleNewMessages()` function checks for new messages every second and handles the `/start` and `/state` commands.
