@@ -166,8 +166,8 @@ void handleNewMessages(int numNewMessages)
     if (text == "/start")
     {
       String welcome = "Welcome, " + from_name + ".\n";
-      welcome += "Usa questo comando per controllare temperatura e umidità\n\n";
-      welcome += "/state stamperà temperatura e umidità\n";
+      welcome += "Use this command to check temperature and humidity\n\n";
+      welcome += "/state shows temperature and humidity\n";
       bot.sendMessage(chat_id, welcome);
     }
   }
